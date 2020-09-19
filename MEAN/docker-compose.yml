@@ -1,0 +1,20 @@
+version: '2'
+services:
+  frontend:
+    build: frontend
+    ports:
+      - "4200:4200"
+    container_name: frontend
+    restart: always
+  backend:
+    build: backend
+    ports:
+      - "3000:3000"
+    container_name: backend
+    restart: always
+    links:
+      - database
+  database:
+    build: database
+    container_name: database
+    restart: always

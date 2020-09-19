@@ -1,0 +1,1 @@
+INSERT INTO books (title, description) VALUES ('The Chronicles of Narnia', 'The Chronicles of Narnia is a series of fantasy novels by British author C. S. Lewis. Written by Lewis, illustrated by Pauline Baynes, and originally published in London between 1950...');

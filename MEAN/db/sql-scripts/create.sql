@@ -1,0 +1,1 @@
+CREATE TABLE books(title varchar(100), description text);

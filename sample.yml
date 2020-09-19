@@ -1,0 +1,16 @@
+version: "2"
+
+services:
+    nome-servizio1:
+        build: "path-Dockerfile"
+    nome-servizio2:
+        image: [nome-immagine]
+        container_name: [nome-container]
+        restart: unless-stopped
+        environment: 
+            - ""
+        volumes:
+            - [sorgente]:[destinazione]
+        networks:
+            - [nome-rete]   
+    
