@@ -5,7 +5,6 @@ services:
           context: app
           dockerfile: Dockerfile
         container_name: flask
-        image: digitalocean.com/flask-python:3.6
         restart: unless-stopped
         environment:
           APP_ENV: "prod"
@@ -41,32 +40,30 @@ services:
         build:
           context: nginx
           dockerfile: Dockerfile
-        image: digitalocean.com/webserver:latest
         container_name: webserver
         restart: unless-stopped
         environment:
-          APP_ENV: "prod"
+#          APP_ENV: "prod"
           APP_NAME: "webserver"
           APP_DEBUG: "false"
           SERVICE_NAME: "webserver"
         ports:
           - "80:80"
-          - "443:443"
         volumes:
           - nginxdata:/var/log/nginx
         depends_on:
           - flask
         networks:
           - frontend
-    networks:
-      frontend:
-        driver: bridge
-      backend:
-        driver: bridge
-    volumes:
-      mongodbdata:
-        driver: local
-      appdata:
-        driver: local
-      nginxdata:
-        driver: local
+networks:
+    frontend:
+      driver: bridge
+    backend:
+      driver: bridge
+volumes:
+  appdata:
+    driver: local
+  mongodbdata:
+    driver: local
+  nginxdata:
+    driver: local
