@@ -1,44 +1,29 @@
-version: '3'
-
+version: "3.5"
 services:
-    nodejs:
-        build:
-          context: .
-          dockerfile: Dockerfile
-        image: nodejs
-        container_name: nodejs
-        restart: unless-stopped
-        env_file: .env
-        environment:
-          - MONGO_USERNAME=$MONGO_USERNAME
-          - MONGO_PASSWORD=$MONGO_PASSWORD
-          - MONGO_HOSTNAME=db
-          - MONGO_PORT=$MONGO_PORT
-          - MONGO_DB=$MONGO_DB 
-        ports:
-          - "80:8080"
-        volumes:
-          - .:/home/node/app
-          - node_modules:/home/node/app/node_modules
-        networks:
-          - mynetwork
-        command: ./wait.sh db:27017 -- /home/node/app/node_modules/.bin/nodemon app.js
-    db:
-        image: mongo:4.1.8-xenial
-        container_name: db
-        restart: unless-stopped
-        env_file: .env
-        environment:
-          - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
-          - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
-        volumes:  
-          - dbdata:/data/db   
-        networks:
-          -  mynetwork 
-    networks:
-        mynetwork:
-        driver: bridge
-
+  app:
+    container_name: app
+    restart: always
+    build: backend
+    ports:
+      - "8081:8081"
+    depends_on:
+      mongo:
+        condition: service_healthy
+  mongo:
+    container_name: mongo
+    image: mongo
+    command: mongod --port 27017
     volumes:
-        dbdata:
-        node_modules:  
+      - ./docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: mydatabase
+#      MONGO_INITDB_ROOT_USERNAME: myuser
+#      MONGO_INITDB_ROOT_PASSWORD: password
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/mydatabase --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
