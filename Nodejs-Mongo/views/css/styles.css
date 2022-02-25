@@ -1,6 +1,6 @@
 .navbar {
     margin-bottom: 0;
-    background: #6a6b6b;
+    background: #0b9999;
 }
 
 body {
@@ -20,8 +20,8 @@ p {
 }
 
 .jumbotron {
-    background: #00cd49;
-    color: #000000;
+    background: #4b8d5d;
+    color: #ffffff;
     text-align: center;
 }
 
@@ -41,7 +41,7 @@ img,
 video,
 audio {
     margin-top: 20px;
-    max-width: 80%;
+    max-width: 50%;
 }
 
 div.caption{
@@ -50,6 +50,14 @@ div.caption{
 }
 
 button{
-    background-color: yellow !important;
-    color: black !important;
+    background-color: #0b9999 !important;
+    color: white !important;
+}
+
+.container{
+    padding: 1em;
+}
+
+.navbar.container{
+    padding: 0;
 }

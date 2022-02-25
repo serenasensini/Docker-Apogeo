@@ -12,6 +12,8 @@ RUN npm install
 
 COPY --chown=node:node . .
 
+RUN chmod 777 wait.sh
+
 EXPOSE 8080
 
 CMD [ "node", "app.js" ]

@@ -1,61 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <title>About Fruits</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <link href="./css/styles.css" rel="stylesheet">
-      <link href='https://fonts.googleapis.com/css?family=Merriweather:400,700' rel='stylesheet' type='text/css'>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   </head>
-   <nav class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Everything fruits</a>
-         </div>
-         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav mr-auto">
-               <li><a href="/">Home</a></li>
-               <li class="active"><a href="/fruits">Fruits</a></li>
-            </ul>
-         </div>
-      </div>
-   </nav>
-   <div class="jumbotron text-center">
-      <h1>Fruits Info</h1>
-   </div>
+<head>
+   <title>Fruits Managament</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link href="./css/styles.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700" rel="stylesheet" type="text/css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+<nav class="navbar navbar-dark navbar-static-top navbar-expand-md">
    <div class="container">
-      <div class="row">
-         <div class="col-md-4">
-            <p>
-            <div class="caption">Some fruits are known to be dangerous to humans. The yellow star fruit, for example, is not considered a threat to humans.</div>
-            <img src="https://qph.fs.quoracdn.net/main-qimg-7da4102319318feddfc997b671ab428d" alt="Yellow star fruit">
-            </p>
-         </div>
-         <div class="col-md-4">
-            <p>
-            <div class="caption">Other fruits are really tasty and available all over the world!</div>
-            </p>
-         </div>
-         <div class="col-md-4">
-            <p>
-            <form action="/fruits/addfruit" method="post">
-               <div class="caption">Enter Your Favorite Fruit</div><br/>
-               <input type="text" placeholder="Fruit Name" name="name" <%=fruits[i].name; %><br/>
-               <input type="text" placeholder="Colour" name="colour" <%=fruits[i].colour; %><br/>
-               <button type="submit">Submit</button>
-            </form>
-            </p>
-         </div>
+      <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+         <span class="sr-only">Toggle navigation</span>
+      </button> <a class="navbar-brand" href="/">Everything about fruits</a>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul class="nav navbar-nav mr-auto">
+            <li class="active nav-item">
+               <a href="/" class="nav-link">
+                  Home</a>
+            </li>
+            <li class="nav-item">
+               <a href="/fruits" class="nav-link">Add fruit</a>
+            </li>
+            <li class="nav-item">
+               <a href="/fruits/getfruit" class="nav-link">Fruits' list</a>
+            </li>
+         </ul>
       </div>
-    </div>
-   </body>
+   </div>
+</nav>
+<div class="jumbotron text-center">
+   <div class="container">
+      <h1>Add a new fruit</h1>
+      </p>
+   </div>
+</div>
+<div class="container">
+   <div class="row">
+      <div class="col-md-6">
+         <p>
+         <div class="caption">Some fruits are known to be dangerous to humans. The yellow star fruit, for example, is not considered a threat to humans.</div>
+         <img src="https://qph.fs.quoracdn.net/main-qimg-7da4102319318feddfc997b671ab428d" alt="Yellow star fruit">
+         </p>
+      </div>
+      <div class="col-md-6">
+         <p>
+         <div class="caption">Other fruits are really tasty and available all over the world!</div>
+         </p>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-12">
+         <p>
+         <form action="/fruits/addfruit" method="post">
+            <div class="caption">Enter Your Favorite Fruit:</div><br/>
+            <input type="text" placeholder="Fruit Name" name="name" <%=fruits[i].name; %><br/>
+            <input type="text" placeholder="Colour" name="colour" <%=fruits[i].colour; %><br/>
+            <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
+         </p>
+      </div>
+   </div>
+</div>
+</body>
 </html>
