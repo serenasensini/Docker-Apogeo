@@ -1,19 +1,16 @@
-FROM node:10-alpine
-
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-
-WORKDIR /home/node/app
-
-COPY package*.json ./
-
-USER node
-
-RUN npm install
-
-COPY --chown=node:node . .
-
-RUN chmod 777 wait.sh
-
-EXPOSE 8080
-
-CMD [ "node", "app.js" ]
+# immagine di base
+FROM node
+# creazione della cartella di lavoro
+RUN mkdir -p /usr/src/app
+# set della cartella di lavoro
+WORKDIR /usr/src/app
+# copia del file delle dipendenze
+COPY package.json /usr/src/app
+# installazione delle dipendenze
+RUN npm install && npm install mongoose --save
+# copia del codice
+COPY . /usr/src/app
+# esposizione della porta
+EXPOSE 8081
+# avvio dell'app
+CMD ["npm", "start"]
