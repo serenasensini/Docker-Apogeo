@@ -15,20 +15,22 @@ services:
           - MONGO_PORT=$MONGO_PORT
           - MONGO_DB=$MONGO_DB 
         ports:
-          - "8080:8080"
+          - "8081:8081"
         volumes:
           - .:/home/node/app
           - node_modules:/home/node/app/node_modules
         networks:
           - mynetwork
-        command: sh wait.sh db:27017 -- /home/node/app/node_modules/.bin/nodemon app.js
-    db:
+#        command: sh wait.sh db:27017 -- /home/node/app/node_modules/.bin/nodemon app.js
+        depends_on:
+          - mongo
+    mongo:
         image: mongo:4.1.8-xenial
-        container_name: db
+        container_name: mongo
         restart: unless-stopped
         ports:
           - "27017:27017"
-        env_file: .env
+#        env_file: .env
         environment:
           - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
           - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD

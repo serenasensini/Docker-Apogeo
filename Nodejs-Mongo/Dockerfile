@@ -7,10 +7,10 @@ WORKDIR /usr/src/app
 # copia del file delle dipendenze
 COPY package.json /usr/src/app
 # installazione delle dipendenze
-RUN npm install && npm install mongoose --save
+RUN npm install --save
 # copia del codice
 COPY . /usr/src/app
 # esposizione della porta
 EXPOSE 8081
 # avvio dell'app
-CMD ["npm", "start"]
+CMD ["npm", "start", "--host", "0.0.0.0"]

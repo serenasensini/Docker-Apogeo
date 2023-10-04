@@ -1,9 +1,20 @@
-# Back-end in Express.js
+# Node.js con MongoDB
 
-## Appunti velocissimi
+## Disclaimer
 
-0. Generare un nuovo progetto Express.js e modificarlo seguendo lo stile del progetto MEAN: creare una cartella model, data e controllers, ed eliminare views e i file sotto routes/ o modificarli opportunamente.
-1. Partire dal file sample.json e creare un oggetto che rappresenti un'entità
-2. Procedere con la definizione del modello nel file userModel.js
-3. Passare al controller e creare i diversi moduli che permettono di eseguire le operazioni CRUD sugli oggetti
-4. Lavorare il file index.js o app.js che sia per verificare che si colleghi correttamente al database e configurare l'app Express affinché parta.
+La versione presente nel libro utilizzava presentava un bug relativo ad un errore di sintassi della parola 
+"mongoose", riferito alla dipendenza presente nel file _index.js_.
+
+Questa versione è aggiornata alla versione 20 di Node.js e testata.
+
+## Installazione
+
+```
+docker-compose build
+
+docker-compose up -d
+```
+
+Accedere alla pagina http://localhost:8081/api per visualizzare la pagina dell'applicazione:
+
+![img.png](img.png)

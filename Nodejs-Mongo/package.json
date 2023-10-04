@@ -15,7 +15,7 @@
     "mongodb",
     "express"
   ],
-  "author": "David Inyang-Etoh",
+  "author": "Serena Sensini",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",

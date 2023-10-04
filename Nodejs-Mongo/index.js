@@ -16,7 +16,7 @@ const connectionOptions = {
    }
    
 try {
-  moongose.connect('mongodb://mongo:27017/mydb',connectionOptions)
+  mongoose.connect('mongodb://mongo:27017/mydb',connectionOptions)
   console.log('Connected to MongoDB')
 } catch (err) {
   console.log('Couldnt connect:', err);

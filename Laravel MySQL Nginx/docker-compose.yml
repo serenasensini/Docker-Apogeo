@@ -1,60 +1,61 @@
 version: '3'
 services:
 
-  application:
+  #Laravel App
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    image: php
+    image: hakase-labs/laravel
     container_name: app
     restart: unless-stopped
     tty: true
     environment:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
-    working_dir: /var/www
+    working_dir: /var/www/html
     volumes:
-      - ./:/var/www
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./:/var/www/html
     networks:
-      - app-network
-
-  webserver:
+      - mynet
+  #Nginx Service
+  nginx:
     image: nginx:alpine
-    container_name: webserver
+    container_name: nginx
     restart: unless-stopped
     tty: true
     ports:
       - "80:80"
-      - "443:443"
+      #- "443:443"
     volumes:
-      - ./:/var/www
+      - ./:/var/www/html
       - ./nginx/conf.d/:/etc/nginx/conf.d/
+      #- ./nginx/ssl/:/etc/nginx/ssl/
     networks:
-      - app-network
-
+      - mynet
+  #MySQL Service
   db:
-    image: mysql:5.7.22
+    image: mysql:5.7
     container_name: db
     restart: unless-stopped
     tty: true
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: your_mysql_root_password
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
+      MYSQL_DATABASE: laraveldb
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: laravelpassworddb
+      MYSQL_ROOT_PASSWORD: rootpasswordmysql
     volumes:
-      - dbdata:/var/lib/mysql/
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - mysqldata:/var/lib/mysql/
     networks:
-      - app-network
+      - mynet
 
+#Docker Networks
 networks:
-  app-network:
+  mynet:
     driver: bridge
-
+#Volumes
 volumes:
-  dbdata:
+  mysqldata:
     driver: local
