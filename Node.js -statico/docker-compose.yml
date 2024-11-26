@@ -22,7 +22,7 @@ services:
 #      MONGO_INITDB_ROOT_USERNAME: myuser
 #      MONGO_INITDB_ROOT_PASSWORD: password
     healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/mydatabase --quiet
+      test: echo 'db.runCommand("ping").ok' | mongosh mongo:27017/mydatabase --quiet
       interval: 10s
       timeout: 10s
       retries: 5
